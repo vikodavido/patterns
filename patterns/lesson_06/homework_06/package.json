@@ -1,0 +1,15 @@
+{
+  "name": "homework_06",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start-homework-06": "node app.js"
+  },
+  "type": "module",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "node-dependency-injection": "^3.0.3"
+  }
+}

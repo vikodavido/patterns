@@ -1,0 +1,15 @@
+{
+  "name": "theory_01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start-theory-01": "node app.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "promise": "^8.1.0",
+    "request-promise": "^4.2.6"
+  }
+}

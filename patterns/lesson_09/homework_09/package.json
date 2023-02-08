@@ -1,0 +1,17 @@
+{
+  "name": "homework_09",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start-homework-09": "node app.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "promise": "^8.1.0"
+  },
+  "devDependencies": {
+    "prettier": "2.7.1"
+  }
+}

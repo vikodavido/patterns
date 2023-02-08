@@ -1,0 +1,15 @@
+{
+  "name": "homework_04",
+  "version": "1.0.0",
+  "description": "",
+  "main": "appSimpler.js",
+  "scripts": {
+    "start-homework-04-simpler": "node appSimpler.js",
+    "start-homework-04s-harder": "node appHarder.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "promise": "^8.1.0"
+  }
+}
