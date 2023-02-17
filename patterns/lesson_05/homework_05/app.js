@@ -1,12 +1,21 @@
 console.log("Hello, this is Homework #06");
 
 class LuckGenerator {
+    constructor (type, max) {
+        this.type = type
+        this.max = max
+    }
+    
     getType() {
-        throw new Error('Method not implemented.');
+        return this.type
+        // throw new Error('Method not implemented.');
     }
 
-    generateNext() {
-        throw new Error('Method not implemented.');
+    generateNext () {
+            let min = Math.ceil(1);
+            let max = Math.floor(this.max);
+            return Math.floor(Math.random() * (max - min + 1)) + min; 
+        // throw new Error('Method not implemented.');
     }
 }
 
@@ -21,9 +30,17 @@ class DefaultLuckGenerator extends LuckGenerator {
 }
 
 class LuckFactory {
-    getLuckGenerator(name) {
+
+    getLuckGenerator(type) {
         // TODO: Implement factory here
-        return new DefaultLuckGenerator();
+        let max;
+        if (type === 'Dice'){
+            max = 6
+        }
+        if (type === 'Coin'){
+            max = 2
+        }     
+        return new LuckGenerator(type, max);
     }
 }
 
