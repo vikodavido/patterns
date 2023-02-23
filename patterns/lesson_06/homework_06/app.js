@@ -31,6 +31,7 @@ class DieselEngine {
   constructor() {}
 
   setHp(hp) {
+    // console.log(hp)
     this.#hp = hp;
   }
 
@@ -83,13 +84,15 @@ class CarFactory {
   }
 
   getCar(make, model, year, hp) {
-    if (make !== "Tesla")
+    if (make !== "Tesla") {
       return new Car(
         make,
         model,
         this.#dieselEngineFactory.getEngine(hp),
         year
       );
+    }
+    
 
     return new Car(
       make,
@@ -106,12 +109,16 @@ let loader = new YamlFileLoader(container);
 // TODO: hard (optional): configure services using config file
 // loader.load(configPath + "/serviceconfig.yml");
 
-container.register("dieselEngine", DieselEngine);
+container.register("dieselEngine", DieselEngine)
 container.register("electricEngine", ElectricEngine);
-container.register("dieselEngineFactory", DieselEngineFactory);
-container.register("electricEngineFactory", ElectricEngineFactory);
-container.register("carFactory", CarFactory);
+container.register("dieselEngineFactory", DieselEngineFactory).addArgument(new Reference("dieselEngine"))
+container.register("electricEngineFactory", ElectricEngineFactory).addArgument(new Reference("electricEngine"))
+container
+  .register("carFactory", CarFactory)
+  .addArgument(new Reference("dieselEngineFactory"))
+  .addArgument(new Reference("electricEngineFactory"))
 // TODO: add missing registrations
+
 
 container
   .register("car", Car)
@@ -121,7 +128,14 @@ container
   .addArgument(2022);
 // code above identical to below:
 // new Car("Mercedes", "SLS", new DieselEngine(), 2022).start()
+
+
 let car = container.get("car").start();
+
 
 car = container.get("carFactory").getCar("Audi", "A5", 2020, 170).start();
 car = container.get("carFactory").getCar("Tesla", "Model S", 2015, 259).start();
+
+
+
+
