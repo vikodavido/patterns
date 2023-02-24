@@ -44,6 +44,7 @@ class EuropeanPlayerAdapter {
     constructor(americanPlayer) {
         this._id = americanPlayer.id;
         this._name = americanPlayer.name;
+        this._heightFootIn = americanPlayer.heightFootIn;
         this._heightCm = 0;
     }
 
@@ -55,8 +56,11 @@ class EuropeanPlayerAdapter {
         return this._name;
     }
 
-    get heightCm() {
-        return this._heightCm;
+    get heightCm() {       
+        return this.convert();
+    }
+    convert() {
+        return Math.floor(Number(this._heightFootIn.replace(/[^\d]/g, '')) / 0.32808);
     }
 }
 
@@ -64,6 +68,7 @@ class AmericanPlayerAdapter {
     constructor(europeanPlayer) {
         this._id = europeanPlayer.id;
         this._name = europeanPlayer.name;
+        this._heightCm = europeanPlayer.heightCm
         this._heightFootIn = "0' 0\"";
     }
 
@@ -76,7 +81,11 @@ class AmericanPlayerAdapter {
     }
 
     get heightFootIn() {
-        return this._heightFootIn;
+        return this.convert();
+    }
+    convert() {
+        let foot = Math.round(this._heightCm * 0.32808)/10;
+        return String(foot).split('.').join('\' ') + '\"';
     }
 }
 
