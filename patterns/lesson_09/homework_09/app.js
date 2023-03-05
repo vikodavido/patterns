@@ -27,6 +27,10 @@ class FileProcessor extends Processor {
 
         if (millisToSleep % 7 == 0) throw new Error("You are not lucky: the processing has failed");
 
+        if (millisToSleep > 1000) throw new Error("Warning: the processing lasted more than 1 second");
+
+
+
         Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, millisToSleep);
 
         console.log(`Item # ${this.id} processed in ${millisToSleep} ms`);
@@ -57,11 +61,20 @@ class TraceDecorator extends Processor {
     constructor(decorated) {
         super();
         this.decorated = decorated;
+        this.maxTime = 1000
     }
 
     process() {
-        // Trace can be added here
-        this.decorated.process();
+        let hasWarning = false;
+        do {
+            try {
+                this.decorated.process();
+                hasWarning = false;
+            } catch (e) {
+                console.warn(e.toString());
+                hasWarning = true;
+            }
+        } while (hasWarning);
     }
 }
 
