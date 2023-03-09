@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "promise": "^8.1.0"
+    "promise": "^8.1.0",
+    "sqlite3": "^5.1.4"
   }
 }
