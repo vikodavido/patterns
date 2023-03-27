@@ -11,6 +11,8 @@ let answerHandler = function (timeTourist, step, time, val) {
 
     let answer = readlineSync.question(step.task);
 
+
+
     if( answer == step.answer ) {
         console.log('Відповідь правильна!!!. За це вам додається : ' + time + ' хвилин')
         timeTourist = handlerTime(timeTourist, 'AddCommand', time)
@@ -21,5 +23,7 @@ let answerHandler = function (timeTourist, step, time, val) {
     console.log('//------------------------------------------------------------------------//')
     return timeTourist
 }
+
+
 
 export default answerHandler
