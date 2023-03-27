@@ -5,6 +5,7 @@ import readlineSync from 'readline-sync';
 let answerHandler = function (timeTourist, step, time, val) {
     console.log('Нажаль у вашому рюкзаку немає ' + val + '((')
     console.log('Ваш час скорочується на ' + time + ' хвилин' )
+    console.log('//------------------------------------------------------------------------//')
     console.log('Я пропоную вам вгадати одну загадку і заробити часу!');
     timeTourist = handlerTime(timeTourist, 'RemoveCommand', time)
 
@@ -17,6 +18,7 @@ let answerHandler = function (timeTourist, step, time, val) {
         console.log('Відповідь не правильна(((. За це знімається : ' + time + ' хвилин')
         timeTourist = handlerTime(timeTourist, 'RemoveCommand', time)
     }
+    console.log('//------------------------------------------------------------------------//')
     return timeTourist
 }
 

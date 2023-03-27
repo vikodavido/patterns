@@ -1,8 +1,6 @@
 console.log("Hello, this is Coursework");
 
 import steps from './state/step.js'; 
-import getRandomInt from './helper/randomInt.js'
-import choseBackpack from './helper/choseBackpack.js'
 
 import resultStep from './result/resultStep.js'
 import resultGame from './result/resultGame.js'
@@ -10,40 +8,22 @@ import resultGame from './result/resultGame.js'
 import handlerTime from './handler/handlerTime.js'
 import handlerTrubble from './handler/handlerTrubble.js'
 import handlerStepTask from './handler/handlerStepTask.js'
+import handlerChose from './handler/handlerChose.js'
 
-import readlineSync from 'readline-sync';
 import { TrubbleBuilderMap, TrubbleBuilderRain, TrubbleBuilderShoes, TrubbleBuilderFood } from './paterns/builder.js'
 
-let timeTourist = getRandomInt(50, 100);
+let timeTourist = handlerStepTask(steps[0])
 let backpack;
-let i = 0
+let i = 1
+
 while (timeTourist > 0 && i < steps.length) {
     console.log('//------------------------------------------------------------------------//')
     let step = steps[i]
     console.log(step.text);
-    if (step.categoryStep == 'task' ) {
-        handlerStepTask(step, timeTourist)
-    }
     if (step.categoryStep == 'chose' ) {
-        if (step.choseName == 'backpack' ) {
-            let handlerChoseBackpack = choseBackpack(step, backpack);
-            let time = handlerChoseBackpack.time;
-            backpack = handlerChoseBackpack.backpack;
-
-            timeTourist = handlerTime(timeTourist, 'RemoveCommand', time)
-            resultStep(timeTourist)
-        }
-        if (step.choseName == 'meet' ) {
-            let answer = readlineSync.question(step.task);
-            let time = getRandomInt(10, 20);
-            if( answer == 1 ) {
-                console.log('Що ж ви використали свій час! Маю надію, що вам висточить тепер його)')
-                timeTourist = handlerTime(timeTourist, 'RemoveCommand', time)
-                resultStep(timeTourist)
-            } else {
-                resultStep(timeTourist)
-            }
-        }    
+        let chose = handlerChose(step, timeTourist, backpack)
+        timeTourist = chose.timeTourist
+        backpack = chose.backpack
     }
     if (step.categoryStep == 'trubble' ) {
         var trubbleBuilder;
