@@ -1,0 +1,16 @@
+{
+  "name": "coursework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start-course-work": "node app.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "promise": "^8.1.0",
+    "readline-sync": "^1.4.10"
+  }
+}
